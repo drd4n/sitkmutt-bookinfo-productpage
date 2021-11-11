@@ -8,4 +8,4 @@ services:
       RATINGS_HOSTNAME: http://ratings:8080
       DETAILS_HOSTNAME: http://details:8081
       REVIEWS_HOSTNAME: http://reviews:9080
-      FLOOD_FACTOR: 1
+      FLOOD_FACTOR: 0

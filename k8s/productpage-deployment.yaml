@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookinfo-dev-productpage
+  namespace: student25-bookinfo-dev
+  labels:
+    app: bookinfo-dev-productpage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bookinfo-dev-productpage
+  template:
+    metadata:
+      labels:
+        app: bookinfo-dev-productpage
+    spec:
+      containers:
+      - name: bookinfo-dev-productpage
+        image: ghcr.io/drd4n/bookinfo-productpage:dev
+        imagePullPolicy: Always
+        env:
+        - name: RATINGS_HOSTNAME
+          value: "http://sitkmutt.bookinfo.dev.opsta.net/student25/ratings"
+        - name: DETAILS_HOSTNAME
+          value: "http://sitkmutt.bookinfo.dev.opsta.net/student25/details"
+        - name: REVIEWS_HOSTNAME
+          value: "http://sitkmutt.bookinfo.dev.opsta.net/student25/reviews"
+        - name: FLOOD_FACTOR
+          value: "0"
+      imagePullSecrets:
+      - name: registry-bookinfo
