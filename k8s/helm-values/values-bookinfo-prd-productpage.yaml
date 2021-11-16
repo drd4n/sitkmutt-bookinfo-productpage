@@ -1,0 +1,19 @@
+productpage:
+  namespace: student25-bookinfo-prd
+  replicas: 1
+  imagePullSecrets: registry-bookinfo
+  port: 8083
+  image: ghcr.io/drd4n/bookinfo-productpage
+  tag: prd
+ingress:
+  host: sitkmutt.bookinfo.prd.opsta.net
+  path: "/student25/productpage(/|$)(.*)"
+  serviceType: ClusterIP
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+extraEnv:
+  RATINGS_HOSTNAME: http://sitkmutt.bookinfo.opsta.net/student30/ratings
+  DETAILS_HOSTNAME: http://sitkmutt.bookinfo.opsta.net/student30/details
+  REVIEWS_HOSTNAME: http://sitkmutt.bookinfo.opsta.net/student30/reviews
+  FLOOD_FACTOR: 0

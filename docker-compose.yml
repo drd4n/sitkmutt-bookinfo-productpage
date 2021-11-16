@@ -1,11 +1,8 @@
 services:
   productpage:
     build: .
-    image: ghcr.io/drd4n/bookinfo-productpage:dev
+    image: ghcr.io/drd4n/bookinfo-productpage:prd
     ports:
       - "8083:8083"
     environment:
-      RATINGS_HOSTNAME: http://ratings:8080
-      DETAILS_HOSTNAME: http://details:8081
-      REVIEWS_HOSTNAME: http://reviews:9080
-      FLOOD_FACTOR: 0
+      SERVICE_VERSION: v1
